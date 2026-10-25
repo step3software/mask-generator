@@ -1,0 +1,16 @@
+{
+  "min_width": 512,
+  "min_height": 512,
+  "aspect_ratio_range": null,
+  "max_file_mb": 64,
+  "max_pixels": 50000000,
+  "sample_size": 256,
+  "blank_stddev_below": 2.0,
+  "dark_mean_below": 12.0,
+  "bright_mean_above": 243.0,
+  "low_detail_edge_below": 1.0,
+  "near_duplicate_distance": 4,
+  "review_limit": 12,
+  "unflagged_sample_count": 3,
+  "desk_criteria": []
+}

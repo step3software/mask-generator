@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "units": "arbitrary_demo_units",
+  "description": "SYNTHETIC TEST FIXTURE; no user reference geometry or camera is implied.",
+  "segments": 32,
+  "pieces": [
+    {
+      "length": 3,
+      "width": 0.9,
+      "thickness": 0.055,
+      "bend_degrees": 125,
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -0.6,
+        0
+      ]
+    },
+    {
+      "length": 2.3,
+      "width": 0.75,
+      "thickness": 0.055,
+      "bend_degrees": -85,
+      "rotation_degrees": [
+        25,
+        0,
+        80
+      ],
+      "translation": [
+        0.25,
+        0.45,
+        0.6
+      ]
+    },
+    {
+      "length": 2.1,
+      "width": 0.7,
+      "thickness": 0.055,
+      "bend_degrees": 95,
+      "rotation_degrees": [
+        0,
+        65,
+        -35
+      ],
+      "translation": [
+        -0.65,
+        0.35,
+        0.9
+      ]
+    }
+  ],
+  "cameras": [
+    {
+      "id": "front",
+      "eye": [
+        0,
+        -8,
+        3
+      ],
+      "target": [
+        0,
+        0,
+        0.5
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "projection": "orthographic",
+      "vertical_span": 5,
+      "image_size": [
+        256,
+        256
+      ]
+    },
+    {
+      "id": "side",
+      "eye": [
+        8,
+        0,
+        3
+      ],
+      "target": [
+        0,
+        0,
+        0.5
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "projection": "orthographic",
+      "vertical_span": 5,
+      "image_size": [
+        256,
+        256
+      ]
+    },
+    {
+      "id": "oblique",
+      "eye": [
+        6,
+        -7,
+        5
+      ],
+      "target": [
+        0,
+        0,
+        0.5
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "projection": "orthographic",
+      "vertical_span": 5,
+      "image_size": [
+        256,
+        256
+      ]
+    },
+    {
+      "id": "high",
+      "eye": [
+        1,
+        -2,
+        9
+      ],
+      "target": [
+        0,
+        0,
+        0.5
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "projection": "orthographic",
+      "vertical_span": 5,
+      "image_size": [
+        256,
+        256
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "reference_state": "awaiting_actual_reference_images_masks_and_cameras",
+  "views": [],
+  "notes": "Each view needs an id, a binary foreground mask path, and an explicit camera. See README. No actual target geometry, cameras, or dimensions are supplied."
+}
