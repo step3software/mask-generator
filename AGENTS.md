@@ -2,6 +2,8 @@
 
 Read [the documentation index](docs/README.md), then [current status](docs/status.md). Follow only the task-specific links from the index; the full documentation set is not required startup reading.
 
+For forward development, choose the next eligible task from [M1](docs/status.md#m1--reproducible-baseline-fit), follow its linked procedure, and record completion evidence in that same ledger. Work from the user's designated development checkout rather than a generated output snapshot. Plans and proposed tests are not existing implementation.
+
 - [Contracts](docs/contracts.md) owns existing scope, input formats, comparison semantics, and limitations.
 - [Operations](docs/operations.md) owns commands and output interpretation.
 - [Implementation map](docs/implementation.md) routes changes to existing code and tests.

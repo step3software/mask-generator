@@ -1,6 +1,6 @@
 # Scope and data contracts
 
-Describes existing behavior at the [reviewed code baseline](status.md#baseline), not a new implementation authorization. [Operations](operations.md) owns commands; [status](status.md) owns current progress.
+Describes existing behavior at the [reviewed code baseline](status.md#baseline) and explicitly labeled preparation/decision contracts for planned M1 work. A planned artifact is not a newly implemented runtime feature. [Operations](operations.md) owns procedures; [status](status.md) owns task state.
 
 ## Scope and interpretation
 
@@ -47,6 +47,42 @@ Masks use Pillow mode `1` or `L` and values 0, 1, or 255; nonzero is foreground.
 Optional `ignore_mask` excludes nonzero pixels. Optional `piece_masks` maps string IDs `"1"`, `"2"`, `"3"` to manually corresponding visible-piece masks. They match dimensions, remain inside the assembly silhouette, and do not overlap. An empty part mask means fully occluded; omitted IDs are not scored. Part masks need not cover the complete assembly silhouette. These labels do not establish hidden geometry.
 
 `extract_alpha_mask.py` requires an actual alpha channel and a nonempty thresholded foreground, with threshold 1–255 (default 128) and the same pixel budget. It does not validate that alpha represents the intended object. Choose masks and camera interpretations from real evidence; record uncertainty rather than fabricate them.
+
+## Reference preparation bundle
+
+This is the artifact contract for planned M1 work. It is maintained alongside the existing runtime inputs; no new loader, calibration tool, or validator is implemented by this document. Keep local image assets under `inputs/<target>/<revision>/` and runs under `runs/`; both are ignored by Git. Commit compact evidence summaries when appropriate, with source hashes and a usable location for supporting assets. A hash alone does not let another developer reproduce a run.
+
+The bundle contains unchanged source images, prepared masks, runtime reference manifests, a base scene/bounds, and one `preparation-notes.json` sidecar. The sidecar is for review/provenance and is not read by the current programs. Do not add uncertainty or role fields to camera objects, which reject unknown fields.
+
+Record bundle revision, target identifier, date, and these entries for each supplied image:
+
+| Entry | Required meaning |
+| --- | --- |
+| `view_id`, source location/hash, target grouping | Stable view identity and which assembly/version it depicts |
+| Disposition and reason | Scoreable, unresolved, excluded, or an alternative target; preserve reasons for every omission |
+| Original/prepared dimensions and transform | EXIF orientation, crop, resize, and any lens correction applied; unchanged raw image remains available |
+| Mask/ignore/part paths and review notes | Mask provenance, treatment of shadows/background/occlusion, correspondence basis for any piece labels |
+| Projection basis and camera revision | Known calibration versus inferred projection, coordinate/scale convention, estimation method, and supporting landmarks/metadata |
+| Uncertainty and unresolved assumptions | Evidence-backed ranges where available; otherwise explicitly unknown, not invented precision |
+| Fit/check role and rationale | Assignment made before fitting, or why an independent check view is unavailable |
+
+Separate runtime manifests may select fit views, withheld check views, and all scoreable views. Each manifest must satisfy the existing reference format. The scene passed to each comparison must contain exactly that manifest's camera definitions; when exporting a scene for a subset, change only its camera list and preserve the three pieces and tessellation. This packaging is currently manual, not a supported split/export command.
+
+Freeze source/mask hashes, camera revisions, view assignments, settings, and geometry bounds before comparing candidates. A changed mask, crop, camera, or split creates a new experiment revision. Unresolved images remain in the inventory and cannot silently become evidence of successful agreement.
+
+## Geometry suitability decision
+
+For M1-4, record one of these dispositions with images/metrics and the considered alternatives. These are development decisions; no new acceptance threshold is introduced.
+
+| Observation | Disposition and next step |
+| --- | --- |
+| Independently checked projections work; reference preparation is credible; residuals respond to changes within justified bounds | Proceed with the current family and document the baseline |
+| Misalignment is consistent with uncertain crop, pose, lens, or mask boundaries | Investigate preparation; revise/freeze inputs, then rerun comparison before expanding geometry |
+| Different plausible camera or mask choices imply incompatible shape conclusions | Insufficient evidence; record ambiguity and identify the specific additional view/landmark needed |
+| Credible views show required variable curvature, twist, outline/cutout, or other structure that cylindrical strips cannot represent | Propose the smallest necessary family extension while preserving exactly three pieces; name affected code and independent tests |
+| Only evidence is a weak score or failure of one random search | Inconclusive; inspect coverage, bounds, initialization, resolution, and uncertainty before declaring the family inadequate |
+
+A family-extension proposal needs the observed unsupported feature, views supporting it, reasons calibration/mask errors do not explain it, a parameterization sketch, any schema implications, and tests for mesh continuity/piece count and projected behavior. It is not an instruction to add supports or silently change the task. If physical constraints remain unknown, keep them unknown rather than treating intersecting meshes as a valid construction.
 
 ## Measurements and ranking
 
