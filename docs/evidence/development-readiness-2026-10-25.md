@@ -14,7 +14,7 @@ Work now uses a normal Git checkout under the user's designated projects directo
 - Added an independent validation and fitting protocol, including analytic/external projection expectations, frozen check views, sensitivity assessment, reproducibility, and measured performance evidence.
 - Updated agent/index/implementation routing to distinguish planned work from existing capabilities. No target thresholds or physical acceptance claims are fabricated.
 
-These changes define future work; they do not implement calibration, masking, split management, sensitivity automation, independent fixtures, or actual target fitting. The absence of real references remains recorded in status. No application code changes or application-test reruns are part of this documentation-only update.
+These changes define future work; they do not implement calibration, masking, split management, sensitivity automation, independent fixtures, or actual target fitting. During final synchronization, ten untracked candidate images appeared in `references/ducky/`. Only their presence and filenames were inspected; their contents and intended use remain unverified. They were preserved and excluded from this documentation commit. Status now routes M1-2 to inventory them rather than asserting there are no local reference candidates. No application code changes or application-test reruns are part of this documentation-only update.
 
 ## Verification
 

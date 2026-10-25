@@ -12,13 +12,15 @@ Reviewed repository: `step3software/mask-generator`, `main` at [d5db405402e3ae9a
 | Multiview silhouette/contour comparison and bounded previews | Implemented and published | [Contracts](contracts.md#measurements-and-ranking) |
 | Geometry-only seeded random search | Implemented baseline sampler; no global-optimum claim | [Search contract](contracts.md#search-bounds) |
 | Generic screening | Optional separate implementation | [Tool guide](../tools/generic_screening/README.md) |
-| Real target fitting | Not performed; target reference images have not been supplied to this project | Inputs below |
+| Real target fitting | Not performed; local candidate images are available but applicability and preparation are unverified | Inputs below |
 | Physical build validation | Not implemented | No collision, join, material/stability, or fabrication proof |
 | User target acceptance | Not determined | No target tolerances or acceptance evidence supplied |
 
 ## Outstanding inputs
 
-The project needs actual reference images and identification of which depict the same assembly. Use all useful supplied angles; there is no fixed four-angle requirement or eight-angle evaluation cap. The four cameras in the demo are arbitrary; eight is only a per-overlay preview cap.
+Ten untracked image files were discovered locally in `references/ducky/` during checkout synchronization on 2026-10-25. Their visual contents, source provenance, intended target, and view relationships have not been reviewed; they were not uploaded with the documentation. M1-2 should inventory these candidate assets and establish applicability before treating them as target evidence. A fresh clone does not contain them and needs an actual source location from the owner.
+
+Identify which supplied images depict the same target and use all useful supplied angles. There is no fixed four-angle requirement or eight-angle evaluation cap. The four cameras in the demo are arbitrary; eight is only a per-overlay preview cap.
 
 Target comparison additionally needs foreground masks and a shared camera interpretation, or preparation work from supplied images. Known viewpoints, lens/crop metadata, landmarks, and a dimension help where available. Automatic masking of opaque photographs and camera calibration are not implemented. Do not ask the owner to invent numerical cameras; estimates can be prepared later from evidence and labeled uncertain.
 
@@ -33,7 +35,7 @@ Outcome: another developer can reproduce a baseline comparison of one three-piec
 | Task | Dependencies and current state | Deliverable | Completion check |
 | --- | --- | --- | --- |
 | M1-1 Independent validation baseline | Can be developed without target images; not implemented | Independent projection/metric fixtures and an evidence record following the [benchmark protocol](operations.md#benchmark-protocol) | Expected results come from analytic calculations or separately produced evidence; negative cases fail as expected; numerical tolerances have a recorded basis |
-| M1-2 Reference intake | Awaiting actual images | Versioned source inventory and view grouping in the [reference preparation bundle](contracts.md#reference-preparation-bundle) | Every supplied image is included, grouped as an alternative target, or excluded with a reason; no view is silently discarded |
+| M1-2 Reference intake | Local candidate images available; applicability unverified | Versioned source inventory and view grouping in the [reference preparation bundle](contracts.md#reference-preparation-bundle) | Every supplied image is included, grouped as an alternative target, or excluded with a reason; no view is silently discarded |
 | M1-3 Masks and camera interpretation | M1-2; not started | Reviewed masks, explicit camera revisions, uncertainty notes, and fit/check view assignments | [Preparation procedure](operations.md#reference-preparation-procedure) completed; scoreable views satisfy the runtime reference format; unresolved views are identified explicitly |
 | M1-4 Geometry suitability decision | M1-3 plus reliable projection evidence from M1-1; not started | A three-piece base scene, justified bounds, and a geometry-fit decision in the experiment record | Apply [geometry decision criteria](contracts.md#geometry-suitability-decision); choose proceed, investigate calibration/masks, insufficient evidence, or propose a family extension with specific evidence |
 | M1-5 Baseline fitting experiment | M1-4 permits fitting; not started | Frozen inputs/settings, baseline and searched candidate results, selected scene, and measured runtime | Existing commands produce reports without unaccounted candidate errors; selection uses fit views only; every scoreable view appears in final reporting |
